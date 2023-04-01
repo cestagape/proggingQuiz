@@ -10,7 +10,7 @@ const questionsArr = ['Чье имя носит православный соб�
     'Кому из известных литераторов принадлежала дача в Гурзуфе, ныне переоборудованная в дом-музей?'];
 const answersArr = [['Владимира', 'Андрея', 'Николая'],
                     ['Джаза', 'Рэгги', 'Техно'],
-                    ['Обсерватории', 'Завода электронно-вычислительной техники', 'Атомной электростанци'],
+                    ['Обсерватории', 'Завода электронно-вычислительной техники', 'Атомной электростанции'],
                     ['И. Айвазовский', 'И. Крамской', 'В. Серов'],
                     ['Симферополь', 'Инкерман', 'Алушта'],
                     ['В Форосе', 'В Гаспре', 'В Ливадии'],
@@ -21,6 +21,7 @@ const answersArr = [['Владимира', 'Андрея', 'Николая'],
                    ];
 var rightAnswersCounter = 0
 var questionCounter = 1
+const answerBtns = document.getElementsByClassName('answer')
 const count = document.getElementById('win-counter-id')
 const titleContent = document.getElementById('win-title-id')
 const nextButton = document.getElementById('nextButton')
@@ -31,11 +32,17 @@ const answerButton3 = document.getElementById('answer-3')
 answerButton1.addEventListener('click', tryAnswer)
 answerButton2.addEventListener('click', tryAnswer)
 answerButton3.addEventListener('click', tryAnswer)
+function randomInteger(min, max) {
+    // получить случайное число от (min-0.5) до (max+0.5)
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+}
 
 function tryAnswer() {
-    if (this.innerHTML === 'Владимира') {
+    if (this.innerHTML === answersArr[questionCounter-1][0]) {
         this.style.backgroundColor = "#35C97D";
-        counter +=1
+        rightAnswersCounter +=1
+        console.log(rightAnswersCounter)
     }
     else {
         this.style.backgroundColor = "#FF2D2D";
@@ -43,12 +50,46 @@ function tryAnswer() {
 }
 function nextQuestion() {
 
-        if (answerButton1.style.backgroundColor !== "" || answerButton2.style.backgroundColor !== "" || answerButton3.style.backgroundColor !== "" ) {
-            questionCounter += 1
-            count.innerHTML = questionCounter +'/10'
-            titleContent.innerHTML = questionsArr[questionCounter-1]
-            titleContent.style.textAlign = center
-        }
+    let deletedIndex
+    if (answerButton1.style.backgroundColor !== "" || answerButton2.style.backgroundColor !== "" || answerButton3.style.backgroundColor !== "" || answerButton1.style.backgroundColor !== "rgba(217, 217, 217, 20%)" || answerButton2.style.backgroundColor !== "rgba(217, 217, 217, 20%)" || answerButton3.style.backgroundColor !== "rgba(217, 217, 217, 20%)") {
+        // увеличение счетчика вопроса на 1
+        questionCounter += 1
+        count.innerHTML = questionCounter + '/10'
+        // измененеие вопроса и ответов к нему
+        //изменение вопроса
+        titleContent.innerHTML = questionsArr[questionCounter - 1]
+        // изменение ответов
+        //массив ответов под конкретный вопрос
+        var currAnswers = answersArr[questionCounter - 1].slice()
+        // console.log(currAnswers)
+
+        // записываем индекс вписываемого в ответ элемента массива currAnswers
+        deletedIndex = randomInteger(0, 2)
+        // вписываем в первый ответ currAnswers[deletedIndex]
+        answerButton1.innerHTML = currAnswers[deletedIndex]
+        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+        currAnswers.splice(deletedIndex, 1)
+
+        // записываем индекс вписываемого в ответ элемента массива currAnswers
+        deletedIndex = randomInteger(0, 1)
+        // вписываем во второй ответ currAnswers[deletedIndex]
+        answerButton2.innerHTML = currAnswers[deletedIndex]
+        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+        currAnswers.splice(deletedIndex, 1)
+
+        // записываем индекс вписываемого в ответ элемента массива currAnswers
+        deletedIndex = randomInteger(0, 0)
+        // вписываем во второй ответ currAnswers[deletedIndex]
+        answerButton3.innerHTML = currAnswers[deletedIndex]
+        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+        currAnswers.splice(deletedIndex, 1)
+
+        //  возвращаем нейтральный цвет бэкгрунда ответов
+        answerButton1.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+        answerButton2.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+        answerButton3.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+    }
+
 
 
 }

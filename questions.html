@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz is happening!</title>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <div class="logo">
+            <div class="crimea">CRIMEA</div>
+            <div class="quiz">quiz</div>
+        </div>
+        <div class="window">
+            <div class="win-counter" id="win-counter-id">1/10</div>
+            <div class="win-title" id="win-title-id">Чье имя носит православный собор, возведенный в Херсонесе?</div>
+            <div class="win-answers">
+                <ul>
+                    <div class="answer"><li><button class="answerBtn" id="answer-1">Андрея</button></li></div>
+                    <div class="answer"><li><button class="answerBtn" id="answer-2">Владимира</button></li></div>
+                    <div class="answer"><li><button class="answerBtn"id="answer-3">Николая</button></li></div>
+                </ul>
+            </div>
+            <div class="win-next-button">
+                    <button class="next-button" id="next-button" onclick="nextQuestion()"><img src="sources/right-arrow-next-svgrepo-com.svg"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
