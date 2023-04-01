@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <title>Города Крыма</title>
+    <title>Quiz is happening!</title>
 </head>
 <body>
-
+<div class="container">
+    <div class="content">
+        <div class="logo">
+            <div class="crimea">CRIMEA</div>
+            <div class="quiz">quiz</div>
+        </div>
+        <div class="window">
+            <div class="end-title">ПОЗДРАВЛЯЕМ, ВЫ НАБРАЛИ</div>
+            <div class="points-earned"><a id="points-earned-id">8 БАЛЛОВ!</a></div>
+            <div class="quiz-start">
+                <button class="new-quiz-start-button" id="new-quiz-start-button-id" onclick="window.location.href='questions.html'">
+                    ПРОЙТИ ЕЩЕ РАЗ
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="app.js"></script>
 </body>
 </html>

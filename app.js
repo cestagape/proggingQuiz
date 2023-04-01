@@ -19,6 +19,7 @@ const answersArr = [['Владимира', 'Андрея', 'Николая'],
                     ['Пантикопея', 'Керкинитиды', 'Ольвии'],
                     ['А.Чехову', 'И. Бунину', 'А. Грину'],
                    ];
+
 var rightAnswersCounter = 0
 var questionCounter = 1
 const answerBtns = document.getElementsByClassName('answer')
@@ -28,67 +29,102 @@ const nextButton = document.getElementById('nextButton')
 const answerButton1 = document.getElementById('answer-1')
 const answerButton2 = document.getElementById('answer-2')
 const answerButton3 = document.getElementById('answer-3')
+const pointsEarned = document.getElementById('points-earned-id')
+const nextBtnDiv = document.getElementsByClassName('win-next-button')
 
-answerButton1.addEventListener('click', tryAnswer)
-answerButton2.addEventListener('click', tryAnswer)
-answerButton3.addEventListener('click', tryAnswer)
-function randomInteger(min, max) {
-    // получить случайное число от (min-0.5) до (max+0.5)
-    let rand = min - 0.5 + Math.random() * (max - min + 1);
-    return Math.round(rand);
+nextBtnDiv.hidden = true
+
+
+if (window.location.pathname === '/hahahaha/questions.html') {
+    answerButton1.addEventListener('click', tryAnswer)
+    answerButton2.addEventListener('click', tryAnswer)
+    answerButton3.addEventListener('click', tryAnswer)
 }
-
-function tryAnswer() {
-    if (this.innerHTML === answersArr[questionCounter-1][0]) {
-        this.style.backgroundColor = "#35C97D";
-        rightAnswersCounter +=1
-        console.log(rightAnswersCounter)
+    function randomInteger(min, max) {
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
     }
-    else {
-        this.style.backgroundColor = "#FF2D2D";
+
+    function tryAnswer() {
+        if (this.innerHTML === answersArr[questionCounter-1][0]) {
+            rightAnswersCounter +=1
+            console.log(rightAnswersCounter)
+        }
+
+        if (answerButton1.innerHTML !== answersArr[questionCounter-1][0] ) {
+            answerButton1.style.backgroundColor = "#FF2D2D"
+        }
+        else {
+            answerButton1.style.backgroundColor = "#35C97D"
+        }
+        if (answerButton2.innerHTML !== answersArr[questionCounter-1][0] ) {
+            answerButton2.style.backgroundColor = "#FF2D2D"
+        }
+        else {
+            answerButton2.style.backgroundColor = "#35C97D"
+        }
+        if (answerButton3.innerHTML !== answersArr[questionCounter-1][0] ) {
+            answerButton3.style.backgroundColor = "#FF2D2D"
+        }
+        else {
+            answerButton3.style.backgroundColor = "#35C97D"
+        }
+        answerButton1.setAttribute('disabled', '')
+        answerButton2.setAttribute('disabled', '')
+        answerButton3.setAttribute('disabled', '')
     }
-}
-function nextQuestion() {
+    function nextQuestion() {
 
-    let deletedIndex
-    if (answerButton1.style.backgroundColor !== "" || answerButton2.style.backgroundColor !== "" || answerButton3.style.backgroundColor !== "" || answerButton1.style.backgroundColor !== "rgba(217, 217, 217, 20%)" || answerButton2.style.backgroundColor !== "rgba(217, 217, 217, 20%)" || answerButton3.style.backgroundColor !== "rgba(217, 217, 217, 20%)") {
-        // увеличение счетчика вопроса на 1
-        questionCounter += 1
-        count.innerHTML = questionCounter + '/10'
-        // измененеие вопроса и ответов к нему
-        //изменение вопроса
-        titleContent.innerHTML = questionsArr[questionCounter - 1]
-        // изменение ответов
-        //массив ответов под конкретный вопрос
-        var currAnswers = answersArr[questionCounter - 1].slice()
-        // console.log(currAnswers)
+            answerButton1.disabled = false
+            answerButton2.disabled = false
+            answerButton3.disabled = false
+            let deletedIndex
+            if (questionCounter !== 10 ) {
+                // увеличение счетчика вопроса на 1
+                questionCounter += 1
+                count.innerHTML = questionCounter + '/10'
+                // измененеие вопроса и ответов к нему
+                //изменение вопроса
+                titleContent.innerHTML = questionsArr[questionCounter - 1]
+                // изменение ответов
+                //массив ответов под конкретный вопрос
+                let currAnswers = answersArr[questionCounter - 1].slice()
 
-        // записываем индекс вписываемого в ответ элемента массива currAnswers
-        deletedIndex = randomInteger(0, 2)
-        // вписываем в первый ответ currAnswers[deletedIndex]
-        answerButton1.innerHTML = currAnswers[deletedIndex]
-        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
-        currAnswers.splice(deletedIndex, 1)
+                // записываем индекс вписываемого в ответ элемента массива currAnswers
+                deletedIndex = randomInteger(0, 2)
+                // вписываем в первый ответ currAnswers[deletedIndex]
+                answerButton1.innerHTML = currAnswers[deletedIndex]
+                // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+                currAnswers.splice(deletedIndex, 1)
 
-        // записываем индекс вписываемого в ответ элемента массива currAnswers
-        deletedIndex = randomInteger(0, 1)
-        // вписываем во второй ответ currAnswers[deletedIndex]
-        answerButton2.innerHTML = currAnswers[deletedIndex]
-        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
-        currAnswers.splice(deletedIndex, 1)
+                // записываем индекс вписываемого в ответ элемента массива currAnswers
+                deletedIndex = randomInteger(0, 1)
+                // вписываем во второй ответ currAnswers[deletedIndex]
+                answerButton2.innerHTML = currAnswers[deletedIndex]
+                // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+                currAnswers.splice(deletedIndex, 1)
 
-        // записываем индекс вписываемого в ответ элемента массива currAnswers
-        deletedIndex = randomInteger(0, 0)
-        // вписываем во второй ответ currAnswers[deletedIndex]
-        answerButton3.innerHTML = currAnswers[deletedIndex]
-        // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
-        currAnswers.splice(deletedIndex, 1)
+                // записываем индекс вписываемого в ответ элемента массива currAnswers
+                deletedIndex = randomInteger(0, 0)
+                // вписываем во второй ответ currAnswers[deletedIndex]
+                answerButton3.innerHTML = currAnswers[deletedIndex]
+                // удаляем currAnswers[deletedIndex] из currAnswers, чтобы он не повторялся в ответах
+                currAnswers.splice(deletedIndex, 1)
 
-        //  возвращаем нейтральный цвет бэкгрунда ответов
-        answerButton1.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
-        answerButton2.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
-        answerButton3.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+                //  возвращаем нейтральный цвет бэкгрунда ответов
+                answerButton1.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+                answerButton2.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+                answerButton3.style.backgroundColor = 'rgba(217, 217, 217, 20%)'
+            } else {
+                localStorage.setItem("points", rightAnswersCounter)
+                window.location.href = 'end-page.html'
+            }
+
+
     }
+if(window.location.pathname === '/hahahaha/end-page.html') {
+    pointsEarned.innerHTML = localStorage.getItem('points') + ' БАЛЛОВ!'
+    localStorage.clear();
 
 
 

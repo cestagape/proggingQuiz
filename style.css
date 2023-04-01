@@ -86,8 +86,6 @@ body {
     border-radius: 20px;
     font-style: normal;
     line-height: 37px;
-
-
 }
 .win-answers {
     display: flex;
@@ -103,7 +101,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    word-wrap: break-word;
     border-radius: 20px;
     margin-bottom: 50px;
     background: rgba(217, 217, 217, 20%)
@@ -130,7 +128,6 @@ body {
     position: absolute;
     left: 1590px;
     top: 910px;
-
 }
 img {
 
@@ -143,6 +140,7 @@ img {
     width: 70px;
     height: 70px;
     border: 0;
+    background: rgba(255, 255, 255, 0.99)
 
 
 }
@@ -155,7 +153,8 @@ ul {
     border: 0;
     border-radius: 20px;
     background: rgba(217, 217, 217, 20%);
-
+    word-wrap: break-word;
+    overflow-x:hidden;
     font-family: 'Montserrat';
     font-style: normal;
     color: black;
@@ -197,4 +196,52 @@ ul {
     font-weight: 700;
     font-size: 30px;
     line-height: 37px;
+}
+.new-quiz-start {
+    width: 387px;
+    height: 100px;
+    margin-bottom: 147px;
+    margin-top: 166px;
+}
+.new-quiz-start-button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #898AF3;
+    border-radius: 20px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: black;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 37px;
+}
+.end-title{
+    margin-bottom: 119px;
+    margin-top: 100px;
+    text-align: center;
+    width: 1400px;
+    height: 150px;
+    font-size: 50px;
+
+    border-radius: 20px;
+    font-style: normal;
+    line-height: 37px;
+}
+.points-earned {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1400px;
+    height: 134px;
+    margin-bottom: 166px;
+}
+a:first-letter {
+    color: #35C97D;
 }
